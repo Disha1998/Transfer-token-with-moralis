@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <!-- <button onclick="login()">Login with metamask</button> -->
+      <button onclick="transfer()">Run code</button>
+    </div>
+  </body>
+  <script>
+    //    Moralis.initialize("DuFjdV3iJEG9yeIt8AnpY5PMM668XQGAMq9mPI0Z"); //Application ID
+    // Moralis.serverURL = "https://ktm9ysery1cd.usemoralis.com:2053/server"; //Server URL
+
+    //  async function login() {
+    //   console.log("login clicked....");
+    //   var Loginuser = await Moralis.Web3.authenticate(); //this basic one line for login with the metamask
+    //   if (Loginuser) {
+    //     console.log(Loginuser);
+    //   }
+    // }
+
+    //<----------------- befor transfer any token you need to connect (login) with metamask so abobe code for login with metamask----------------->
+
+
+
+
+
+    async function transfer() {
+      // sending 0.1 ETH
+      const options = {
+        type: "native",
+        amount: Moralis.Units.ETH("0.1"),
+        receiver: "0x726cC48aB8def918011A15D9b2F878C4943de1C9",
+      };
+      await Moralis.enableWeb3(); //In latest version must add otherwise you get an error
+      let result = await Moralis.transfer(options);
+    }
+  </script>
+</html>
