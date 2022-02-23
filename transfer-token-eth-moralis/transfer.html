@@ -14,7 +14,9 @@
   <body>
     <div>
       <!-- <button onclick="login()">Login with metamask</button> -->
-      <button onclick="transfer()">Run code</button>
+      <!-- <button onclick="transferETH()">Sending ETH</button> -->
+      <!-- <button onclick="transferErc20()">Sending ERC20 Tokens</button> -->
+      <button onclick="transferErc721()">Sending ERC721</button>
     </div>
   </body>
   <script>
@@ -31,19 +33,42 @@
 
     //<----------------- befor transfer any token you need to connect (login) with metamask so abobe code for login with metamask----------------->
 
+    // Code for sending ETH---------------------------------------------------------------->
+    // async function transferETH() {
+    //   // sending 0.1 ETH
+    //   const options = {
+    //     type: "native",
+    //     amount: Moralis.Units.ETH("0.1"),
+    //     receiver: "0x726cC48aB8def918011A15D9b2F878C4943de1C9",
+    //   };
+    //   await Moralis.enableWeb3(); //In latest version must add otherwise you get an error
+    //   let result = await Moralis.transfer(options);
+    // }
 
+    // Code for Sending ERC20 Tokens----------------------------------------------------------->
+    // sending 0.5 tokens with 18 decimals
+    // async function transferErc20() {
+    //   const options = {
+    //     type: "erc20",
+    //     amount: Moralis.Units.Token("1", "1"),
+    //     receiver: "0x726cC48aB8def918011A15D9b2F878C4943de1C9",
+    //     contractAddress: "0xE6c2de039b7B0FE29187B263a308ba0D26Ac0e19", //Jaydip send me this contract address and some SFS tokenes in etamask wallet (super fun social)
+    //   };
+    //   await Moralis.enableWeb3();
+    //   let result = await Moralis.transfer(options);
+    // }
 
-
-
-    async function transfer() {
-      // sending 0.1 ETH
+    // Code for Sending ERC721 Tokens----------------------------------------------------------->
+    async function transferErc721() {
+      // sending a token with token id = 1
       const options = {
-        type: "native",
-        amount: Moralis.Units.ETH("0.1"),
+        type: "erc721",
         receiver: "0x726cC48aB8def918011A15D9b2F878C4943de1C9",
+        contractAddress: "0x7F24C207e103eBd8Ec5035Ce43459dd3299d529B",
+        tokenId: 15,        
       };
-      await Moralis.enableWeb3(); //In latest version must add otherwise you get an error
-      let result = await Moralis.transfer(options);
+      await Moralis.enableWeb3();
+      let transaction = await Moralis.transfer(options);
     }
   </script>
 </html>
